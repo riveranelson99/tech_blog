@@ -1,1 +1,0 @@
-// This is the security page where they should not see unless logged in
