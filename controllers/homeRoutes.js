@@ -4,16 +4,7 @@ const { User, Comment, Post } = require('../models');
 router.get('/', async (req, res) => {
   try {
     const postData = await Post.findAll({
-      include: [
-        {
-          model: User,
-          attributes: ['name'],
-        },
-        {
-          model: Comment,
-          attributes: ['username']
-        }
-      ],
+      include: [User],
     });
 
     const posts = postData.map(post => post.get({ plain: true }));
@@ -25,21 +16,27 @@ router.get('/', async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
   }
-})
+});
 
-router.get('/', async (req, res) => {
+router.get('/post/:id', async (req, res) => {
   try {
-    const userData = await User.findAll({
-      attributes: { exclude: ['password'] },
-      order: [['name', 'ASC']],
+    const postData = await Post.findByPk({
+      where: {
+        id: req.params.id,
+      },
+      include: [{ model: User }, { model: Comment }],
     });
 
-    const users = userData.map((project) => project.get({ plain: true }));
+    if (postData) {
+      const post = postData.get({ plain: true });
 
-    res.render('homepage', {
-      users,
-      logged_in: req.session.logged_in,
-    });
+      res.render('post', {
+        post,
+        logged_in: req.session.logged_in,
+      });
+    } else {
+      res.status(404).json({ message: 'No post by that id exists!' });
+    }
   } catch (err) {
     res.status(500).json(err);
   }
@@ -52,6 +49,15 @@ router.get('/login', (req, res) => {
   }
 
   res.render('login');
+});
+
+router.get('/signup', (req, res) => {
+  if (req.session.logged_in) {
+    res.redirect('/');
+    return;
+  }
+
+  res.render('signup');
 });
 
 module.exports = router;
