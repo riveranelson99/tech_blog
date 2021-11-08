@@ -17,10 +17,10 @@
             <li class="li-inline nav-item"><a href="/">Home</a></li>
             <li class="li-inline nav-item"><a href="/dashboard">Dashboard</a></li>
             <!-- Attempt to hide log in button when session is logged in -->
-            {{#unless loggedIn}}
+            {{#unless logged_in}}
             <li class="li-inline nav-item"><a href="/login">Login</a></li>
             {{/unless}}
-            <li class="li-inline nav-item"><a href="#" id="logout-link">Logout</a></li>
+            <li class="li-inline nav-item"><a href="#" id="logout">Logout</a></li>
         </ul>
     </nav>
 
@@ -32,7 +32,7 @@
         {{{body}}}
     </main>
 
-{{#if loggedIn}}
+{{#if logged_in}}
 <script src="./js/logout.js"></script>
 {{/if}}
 </body>
