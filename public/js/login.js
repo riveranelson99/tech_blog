@@ -1,8 +1,10 @@
 const loginFormHandler = async (event) => {
     event.preventDefault();
 
-    const username = document.querySelector('').value.trim();
-    const password = document.querySelector('').value.trim();
+    const username = document.querySelector('#username-input').value.trim();
+    const password = document.querySelector('#password-input').value.trim();
+    console.log(username);
+    console.log(password);
 
     if (username && password) {
         const response = await fetch('/api/user/login', {
@@ -10,6 +12,7 @@ const loginFormHandler = async (event) => {
             body: JSON.stringify({ username, password }),
             headers: { 'Content-Type': 'application/json' },
         });
+        console.log(response);
 
         if (response.ok) {
             document.location.replace('/dashboard');
@@ -19,31 +22,31 @@ const loginFormHandler = async (event) => {
     }
 };
 
-const signupFormHandler = async (event) => {
-    event.preventDefault();
+// const signupFormHandler = async (event) => {
+//     event.preventDefault();
 
-    const username = document.querySelector('').value.trim();
-    const password = document.querySelector('').value.trim();
+//     const username = document.querySelector('#username-input').value.trim();
+//     const password = document.querySelector('#password-input').value.trim();
 
-    if (username && password) {
-        const response = await fetch('/api/user', {
-            method: 'POST',
-            body: JSON.stringify({ username, password }),
-            headers: { 'Content-Type': 'application/json' },
-        });
+//     if (username && password) {
+//         const response = await fetch('/api/user', {
+//             method: 'POST',
+//             body: JSON.stringify({ username, password }),
+//             headers: { 'Content-Type': 'application/json' },
+//         });
 
-        if (response.ok) {
-            document.location.replace('/dashboard');
-        } else {
-            alert(response.statusText);
-        }
-    }
-};
+//         if (response.ok) {
+//             document.location.replace('/dashboard');
+//         } else {
+//             alert(response.statusText);
+//         }
+//     }
+// };
 
 document
     .querySelector('.login-form')
     .addEventListener('submit', loginFormHandler);
 
-document
-    .querySelector('.signup-form')
-    .addEventListener('submit', signupFormHandler);
+// document
+//     .querySelector('.signup-form')
+//     .addEventListener('submit', signupFormHandler);

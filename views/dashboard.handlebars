@@ -1,0 +1,26 @@
+<main class="col-auto">
+    <div class="row">
+        <div class="col-auto">
+            <h2>Hi {{user.username}}! </h2>
+        </div>
+    </div>
+    <br>
+    {{#if posts.length}}
+    <div class="card flex-column">
+    {{#each posts as |post|}}
+        <div class="card-body">
+            <a href="dashboard/edit/{{id}}">
+                <div class="card-header flex-row justify-space-between">
+                    <div class="col-8">Post Title: {{title}}</div>
+                    <div class="col-4">posted by {{user.username}} on {{format_date date_created}}</div>
+                </div>
+            </a>
+        </div>
+        {{/each}}
+    </div>
+    {{/if}}
+</main>
+
+<footer class="footer flex-row justify-center">
+    <a href="/dashboard/new">➕ New Post</a>
+</footer>
