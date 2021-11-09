@@ -8,7 +8,13 @@ router.get('/', withAuth, async (req, res) => {
             where: {
                 user_id: req.session.user_id,
             },
-            include: [User],
+            attributes: ['id', 'title', 'content', 'date_created'],
+            include: [
+                {
+                    model: User,
+                    attributes: ['username'],
+                },
+            ],
         });
 
         const posts = postData.map(post => post.get({ plain: true }));
@@ -28,11 +34,7 @@ router.get('/new', withAuth, (req, res) => {
 
 router.get('/edit/:id', withAuth, async (req, res) => {
     try {
-        const postData = await Post.findByPk({
-            where: {
-                id: req.params.id,
-            },
-        });
+        const postData = await Post.findByPk(req.params.id);
 
         if (postData) {
             const post = postData.get({ plain: true });

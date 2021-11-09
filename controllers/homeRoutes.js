@@ -25,11 +25,26 @@ router.get('/post/:id', withAuth, async (req, res) => {
       where: {
         id: req.params.id,
       },
-      include: [{ model: User }, { model: Comment }],
+      attributes: ['id', 'title', 'content', 'date_created'],
+      include: [
+        {
+          model: User,
+          attributes: ['username'],
+        },
+        {
+          model: Comment,
+          attributes: ['id', 'comment', 'date_created', 'user_id', 'post_id'],
+          include: {
+            model: User,
+            attributes: ['username'],
+          },
+        },
+      ],
     });
 
     if (postData) {
       const post = postData.get({ plain: true });
+      console.log(post);
 
       res.render('post', {
         post,
