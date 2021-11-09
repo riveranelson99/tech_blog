@@ -18,9 +18,12 @@ router.get('/', withAuth, async (req, res) => {
         });
 
         const posts = postData.map(post => post.get({ plain: true }));
+        const username = posts[0].user.username;
+        console.log(username)
 
         res.render('dashboard', {
             posts,
+            username,
             logged_in: req.session.logged_in,
         });
     } catch (err) {

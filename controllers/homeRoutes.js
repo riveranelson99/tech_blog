@@ -21,10 +21,10 @@ router.get('/', async (req, res) => {
 
 router.get('/post/:id', withAuth, async (req, res) => {
   try {
-    const postData = await Post.findOne({
-      where: {
-        id: req.params.id,
-      },
+    const postData = await Post.findByPk(req.params.id, {
+      // where: {
+      //   id: req.params.id,
+      // },
       attributes: ['id', 'title', 'content', 'date_created'],
       include: [
         {
@@ -44,7 +44,7 @@ router.get('/post/:id', withAuth, async (req, res) => {
 
     if (postData) {
       const post = postData.get({ plain: true });
-      console.log(post);
+      console.log(post.comments);
 
       res.render('post', {
         post,
