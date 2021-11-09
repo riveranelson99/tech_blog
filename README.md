@@ -2,7 +2,7 @@
 
 Developing a CMS-style blog site similar to a Wordpress site, where developers can publish their blog posts and comment on other developers’ posts as well.
 
-# Port Piece README Info
+# Pseudo Code
 
 * I WANT a CMS-style blog site SO I can publish articles, blog posts, and my thoughts and opinions
 * WHEN the site is visited for the first time, THEN the homepage, which includes existing blog posts if any have been posted; navigation links for the homepage and the dashboard; and the option to log in are presented
@@ -21,3 +21,11 @@ Developing a CMS-style blog site similar to a Wordpress site, where developers c
 * WHEN an existing post in the dashboard is clicked on, THEN the user is able to delete or update the post and taken back to an updated dashboard
 * WHEN the logout option in the navigation is clicked on, THEN the us is signed out of the site
 * WHEN idled on the site for more than a set time THEN the user is able to view comments but prompted to log in again before they can add, update, or delete comments
+
+# Screenshot
+
+![Sample](./assets/port_14_screenshot.png)
+
+# Heroku
+
+[Link to the heroku deployed webpage](https://young-spire-79228.herokuapp.com/)

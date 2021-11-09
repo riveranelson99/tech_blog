@@ -1,3 +1,4 @@
+// This script is responsible for capturing user input in order for the data to be made into a new post
 const postFormHandler = async (event) => {
     event.preventDefault();
 

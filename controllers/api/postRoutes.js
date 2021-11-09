@@ -2,6 +2,7 @@ const router = require('express').Router();
 const { Post } = require('../../models/');
 const withAuth = require('../../util/auth');
 
+// This post route allows for a user to create a new post after having first checked if the user is logged into a session
 router.post('/', withAuth, async (req, res) => {
     try {
         const newPost = await Post.create({
@@ -16,6 +17,7 @@ router.post('/', withAuth, async (req, res) => {
     }
 });
 
+// This post route allows a user to edit any previously created posts after having first checked if the user is logged into a session
 router.put('/:id', withAuth, async (req, res) => {
     try {
         console.log(req.body)
@@ -36,6 +38,7 @@ router.put('/:id', withAuth, async (req, res) => {
     }
 });
 
+// This post route allows a user to delete a post they have previously created after having checked if the user is logged into a session
 router.delete('/:id', withAuth, async (req, res) => {
     try {
         const deletePost = await Post.destroy({

@@ -1,3 +1,4 @@
+// Code used to authenticate with SQL
 const Sequelize = require('sequelize');
 require('dotenv').config();
 

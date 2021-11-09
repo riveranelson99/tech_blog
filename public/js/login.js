@@ -1,3 +1,4 @@
+// This script is responsible for capturing user input in order to verify the user login credentials
 const loginFormHandler = async (event) => {
     event.preventDefault();
 

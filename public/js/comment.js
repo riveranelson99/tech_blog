@@ -1,3 +1,4 @@
+// This script is responsible for capturing user input from the comment box in order to have that data display on the web page
 const commentFormHandler = async (event) => {
     event.preventDefault();
 

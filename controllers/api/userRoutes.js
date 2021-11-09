@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const { User } = require('../../models');
 
+// This user route is responsible for creating a new user with the app
 router.post('/', async (req, res) => {
   try {
     const newUser = await User.create({
@@ -20,6 +21,7 @@ router.post('/', async (req, res) => {
   }
 });
 
+// This user route is responsible for allowing user to login into their accounts if they already have one
 router.post('/login', async (req, res) => {
   try {
     const username = await User.findOne({ where: { username: req.body.username } });
@@ -48,6 +50,7 @@ router.post('/login', async (req, res) => {
   }
 });
 
+// This user route is responsible for allowing a user to logout
 router.post('/logout', (req, res) => {
   if (req.session.logged_in) {
     req.session.destroy(() => {

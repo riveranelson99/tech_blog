@@ -1,3 +1,4 @@
+// This script is responsible for removing a post
 const removePostFormHandler = async (event) => {
     event.preventDefault();
 

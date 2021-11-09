@@ -2,6 +2,7 @@ const router = require('express').Router();
 const { User, Post } = require('../models');
 const withAuth = require('../util/auth');
 
+// This dashboard route seeks out all post data related to the user that is currently logged into the app and populates it for them on their dashboard
 router.get('/', withAuth, async (req, res) => {
     try {
         const postData = await Post.findAll({
@@ -28,10 +29,12 @@ router.get('/', withAuth, async (req, res) => {
     }
 });
 
+// This dashboard route simply takes a user to a new page in order for them to create a new post
 router.get('/new', withAuth, (req, res) => {
     res.render('newPost')
 });
 
+// This dashboard route is responsible for finding the post the user has clicked on in their dashboard and loading the edit page
 router.get('/edit/:id', withAuth, async (req, res) => {
     try {
         const postData = await Post.findByPk(req.params.id);

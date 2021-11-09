@@ -1,3 +1,4 @@
+// This script is responsible for capturing user input in order to have the information update on the webpage
 const editFormHandler = async (event) => {
     event.preventDefault();
 

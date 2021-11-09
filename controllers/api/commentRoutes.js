@@ -2,9 +2,9 @@ const router = require('express').Router();
 const { Comment } = require('../../models');
 const withAuth = require('../../util/auth');
 
+// This comment route creates a new comment after having first ensured a user is logged into a session
 router.post('/', withAuth, async (req, res) => {
     try {
-        console.log(req.body);
         const newComment = await Comment.create({
             comment: req.body.comment,
             post_id: req.body.postId,

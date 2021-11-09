@@ -1,3 +1,4 @@
+// this script is responsible for capturing user input for the purposes of making a new account
 const signupFormHandler = async (event) => {
     event.preventDefault();
 

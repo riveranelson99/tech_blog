@@ -2,6 +2,7 @@ const router = require('express').Router();
 const { User, Comment, Post } = require('../models');
 const withAuth = require('../util/auth');
 
+// This home route is responsible for finding all post data and rendering them to the home page for all to see
 router.get('/', async (req, res) => {
   try {
     const postData = await Post.findAll({
@@ -19,12 +20,10 @@ router.get('/', async (req, res) => {
   }
 });
 
+// This home route is responsible for rendering a single post page but only after having first checked if the user who clicked on the post is an authenticated user or not
 router.get('/post/:id', withAuth, async (req, res) => {
   try {
     const postData = await Post.findByPk(req.params.id, {
-      // where: {
-      //   id: req.params.id,
-      // },
       attributes: ['id', 'title', 'content', 'date_created'],
       include: [
         {
@@ -58,6 +57,7 @@ router.get('/post/:id', withAuth, async (req, res) => {
   }
 });
 
+// This home route takes users to the login page
 router.get('/login', (req, res) => {
   if (req.session.logged_in) {
     res.redirect('/');
@@ -67,6 +67,7 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
+// This home route takes users to the signup page
 router.get('/signup', (req, res) => {
   if (req.session.logged_in) {
     res.redirect('/');

@@ -1,3 +1,4 @@
+// This script is simply responsible for ending a session and replacing the current page with the login page
 const logout = async () => {
     const response = await fetch('/api/user/logout', {
         method: 'POST',
